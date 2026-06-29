@@ -1,0 +1,26 @@
+
+services:
+  wealthfolio:
+    image: wealthfolio/wealthfolio:latest
+    container_name: wealthfolio
+    restart: unless-stopped
+    init: true
+    user: '1000:1000'
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    env_file:
+      - .env
+    ports:
+      - 24568:8088
+    volumes:
+      - ./data:/data
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    healthcheck:
+      test:
+        ['CMD-SHELL', 'wget --tries=1 --quiet --spider http://localhost:8088/ || exit 1']
+      interval: 10s
+      timeout: 5s
+      retries: 5
