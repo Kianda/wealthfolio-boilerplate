@@ -3,10 +3,6 @@
 Docker setup for running a self-hosted [Wealthfolio](https://github.com/wealthfolio/wealthfolio)
 instance using the official `wealthfolio/wealthfolio:latest` image.
 
-Unlike Ghostfolio (3 containers: app + Postgres + Redis), Wealthfolio is a
-**single Rust container** with **embedded SQLite**: trivial backups (one file
-`data/wealthfolio.db`) and a very small footprint (~150 MB RAM, < 200 MB image).
-
 ## Requirements
 
 - Docker Engine >= 20.10
