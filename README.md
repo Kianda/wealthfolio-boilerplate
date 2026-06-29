@@ -90,28 +90,4 @@ rm -f data/wealthfolio.db data/secrets.json
 
 To convert a broker CSV export (e.g. Directa) into Wealthfolio's
 "Import Activities" format and optionally push via API, see the companion
-repo [`wealthfolio-importer-gui`](../wealthfolio-importer-gui/).
-
-## Security
-
-- `.env` is already in `.gitignore`. Never commit it.
-- Container runs with `cap_drop: ALL` and `no-new-privileges: true`.
-- The app is exposed on the host only at `localhost:24568`. To serve on a
-  public network, put a reverse proxy in front, enable `WF_AUTH_PASSWORD_HASH`,
-  and set `WF_CORS_ALLOW_ORIGINS` explicitly (the default `*` is rejected when
-  auth is active).
-
-## Structure
-
-```
-.
-+-- docker-compose.yml   # 1 service: wealthfolio (Rust + SQLite)
-+-- .env.example         # variable template (with placeholders)
-+-- .env                 # your real values - DO NOT commit
-+-- .gitignore
-+-- start.sh             # check .env + mkdir data + docker compose up -d
-+-- stop.sh              # docker compose down
-+-- data/
-    +-- wealthfolio.db   # SQLite database (created on first start)
-    +-- secrets.json     # encrypted secrets (created on first start)
-```
+repo [`wealthfolio-importer-gui`](https://github.com/Kianda/wealthfolio-importer-gui).
